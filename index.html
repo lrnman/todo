@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-framework="backbonejs">
+	<head>
+		<meta charset="utf-8">
+		<title>Backbone.js • TodoMVC</title>
+		<link rel="stylesheet" href="dist/css/all.min.css">
+	</head>
+	<body>
+		<div id="load">
+			<div class="spinner">
+				<div class="dot1"></div>
+				<div class="dot2"></div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar" style="width:0%"></div>
+			</div>
+			<script type="text/javascript">
+				var p = document.getElementsByClassName('progress-bar')[0];
+				var time  = 0;
+				var timeId = setInterval(function () {
+				    time += 5;
+					p.style.width = time+'%';
+					if (time >= 90) {
+					    clearInterval(timeId);
+					}
+                }, 30);
+			</script>
+		</div>
+		<section class="todoapp">
+			<header class="header">
+				<h1>todos</h1>
+				<input class="new-todo" placeholder="What needs to be done?" autofocus >
+			</header>
+			<section class="main">
+				<input class="toggle-all" id="toggle_all" type="checkbox">
+				<ul class="todo-list">
+					
+				</ul>
+			</section>
+			<footer class="footer"></footer>
+		</section>
+		<footer class="info">
+			<p>Enter to confirm</p>
+			<p>Double-click to edit a todo</p>
+			<p>CSS and HTML Written by <a href="https://github.com/addyosmani">Addy Osmani</a></p>
+			<p>JS Written by 廖建</p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+	
+		<!-- 备忘录模板字符串 -->
+		<script type="text/template" id="item_template">
+			<div class="view">
+				<input class="toggle " type="checkbox" <%= isCompleted ? 'checked' : '' %>>
+				<label><%= title %></label>
+				<button class="destroy"></button>
+			</div>
+			<input type="text" class="edit" value="<%= title %>" autofocus>
+		</script>
+		
+		<script type="text/template" id="stats_template">
+			<span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+			<ul class="filters">
+				<li>
+					<a class="all selected" href="#">All</a>
+				</li>
+				<li>
+					<a class="active" href="#active">Active</a>
+				</li>
+				<li>
+					<a class="completed" href="#completed">Completed</a>
+				</li>
+			</ul>
+			<% if (done) { %>
+			<button class="clear-completed">Clear completed</button>
+			<% } %>
+		</script>
+		<script src="lib/jquery.js"></script>
+		<script src="lib/underscore.js"></script>
+		<script src="lib/backbone.js"></script>
+		<script src="lib/backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="dist/js/all.min.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
